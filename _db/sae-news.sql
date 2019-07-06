@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 29 Ιουν 2019 στις 16:57:37
--- Έκδοση διακομιστή: 10.3.16-MariaDB
--- Έκδοση PHP: 7.3.6
+-- Host: 127.0.0.1
+-- Generation Time: Jul 06, 2019 at 05:26 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Βάση δεδομένων: `sae-news`
+-- Database: `sae-news`
 --
 
 -- --------------------------------------------------------
 
 --
--- Δομή πίνακα για τον πίνακα `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -34,19 +34,20 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Άδειασμα δεδομένων του πίνακα `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `title`) VALUES
 (1, 'Politics'),
 (2, 'Technology'),
 (3, 'Sports'),
-(4, 'Entertainment');
+(4, 'Entertainment'),
+(5, 'Social');
 
 -- --------------------------------------------------------
 
 --
--- Δομή πίνακα για τον πίνακα `posts`
+-- Table structure for table `posts`
 --
 
 CREATE TABLE `posts` (
@@ -60,10 +61,20 @@ CREATE TABLE `posts` (
   `category_id` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `body`, `views`, `likes`, `date`, `user_id`, `category_id`) VALUES
+(1, 'Reunification of migrant toddlers, parents should be completed Thursday', '<h1>Header</h1>', 12, 237, '2019-07-07', 2, 3),
+(2, 'Meet the 12 boys rescued from cave', '<h1>Meet the 12 boys rescued from cave</h1>', 23, 12, '2019-07-02', 1, 1),
+(3, 'Title', 'Body', 0, 0, '2019-07-09', 3, 3),
+(4, 'Title', 'Body', 0, 0, '2019-07-09', 3, 3);
+
 -- --------------------------------------------------------
 
 --
--- Δομή πίνακα για τον πίνακα `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -71,31 +82,31 @@ CREATE TABLE `users` (
   `first_name` varchar(50) CHARACTER SET greek NOT NULL,
   `last_name` varchar(100) CHARACTER SET greek NOT NULL,
   `username` varchar(50) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
-  `password` varchar(50) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL
+  `password` varchar(160) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Άδειασμα δεδομένων του πίνακα `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`) VALUES
-(1, 'Σοφία', 'Πετροπούλου', 'sofia', '1234'),
-(2, 'Ιορδάνης', 'Σαββίδης', 'iordanis', '1234'),
-(3, 'θανάσης', 'Νομικός', 'thanasis', '1234'),
-(4, 'Σταμάτη', 'Μεθενίτης', 'stamatis', '1234');
+(1, 'Σοφία', 'Πετροπούλου', 'sofia', '$2y$10$Hy3KwZBxRdUkWyMExbcYBuyBOE19T8osmnML1ZMZanQDd/qcpcuqe'),
+(2, 'Ιορδάνης', 'Σαββίδης', 'iordanis', '$2y$10$Hy3KwZBxRdUkWyMExbcYBuyBOE19T8osmnML1ZMZanQDd/qcpcuqe'),
+(3, 'θανάσης', 'Νομικός', 'thanasis', '$2y$10$Hy3KwZBxRdUkWyMExbcYBuyBOE19T8osmnML1ZMZanQDd/qcpcuqe'),
+(4, 'Σταμάτη', 'Μεθενίτης', 'stamatis', '$2y$10$Hy3KwZBxRdUkWyMExbcYBuyBOE19T8osmnML1ZMZanQDd/qcpcuqe');
 
 --
--- Ευρετήρια για άχρηστους πίνακες
+-- Indexes for dumped tables
 --
 
 --
--- Ευρετήρια για πίνακα `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Ευρετήρια για πίνακα `posts`
+-- Indexes for table `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`),
@@ -103,39 +114,39 @@ ALTER TABLE `posts`
   ADD KEY `fk_posts_categories` (`category_id`);
 
 --
--- Ευρετήρια για πίνακα `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT για άχρηστους πίνακες
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT για πίνακα `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT για πίνακα `posts`
+-- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT για πίνακα `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Περιορισμοί για άχρηστους πίνακες
+-- Constraints for dumped tables
 --
 
 --
--- Περιορισμοί για πίνακα `posts`
+-- Constraints for table `posts`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `fk_posts_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON UPDATE CASCADE,
