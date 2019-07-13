@@ -297,8 +297,22 @@
                                     </div>
                                     <div class="post-meta d-flex">
                                         <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 32</a>
-                                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 42</a>
-                                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 7</a>
+                                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> <?= $row["views"] ?></a>
+                                        <a href="like.php?id=<?= $row["id"] ?>" class="btn-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span><?= $row["likes"] ?></span></a>
+                                        <script>
+                                            window.addEventListener("load", function() {
+                                                $('.btn-like').each(function () {
+                                                    const $this = $(this);
+                                                    $this.on("click", function(event) {
+                                                        const url = $this.attr('href');
+                                                        $.get(url, function(data) {
+                                                            $this.find('span').text(data.likes); 
+                                                        });
+                                                        event.preventDefault();
+                                                    });
+                                                });
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
