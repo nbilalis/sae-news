@@ -364,6 +364,7 @@
               <!-- /.col-->
             </div>
             <!-- /.row-->
+            <?php /*
             <div class="row">
               <div class="col-lg-12">
                 <div class="card">
@@ -442,6 +443,7 @@
               </div>
               <!-- /.col-->
             </div>
+            */ ?>
             <!-- /.row-->
           </div>
         </div>
