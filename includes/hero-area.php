@@ -21,7 +21,7 @@ if ($result = $conn->query($sql)):
                         <!-- Single Feature Post -->
                         <div class="single-feature-post video-post bg-img" style="background-image: url(img/bg-img/<?= rand(1, 49) ?>.jpg);">
                             <!-- Play Button -->
-                            <a href="video-post.html" class="btn play-btn"><i class="fa fa-play" aria-hidden="true"></i></a>
+                            <a href="video-post.php?id=<?= $row["id"] ?>" class="btn play-btn"><i class="fa fa-play" aria-hidden="true"></i></a>
 
                             <!-- Post Content -->
                             <div class="post-content">
