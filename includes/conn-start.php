@@ -10,5 +10,8 @@ if ($conn->connect_error) {
 }
 
 // This is needed in order to show greek text properly
-$conn->query("SET NAMES 'utf8'");
+//$conn->query("SET NAMES 'utf8'");
+$conn->set_charset("utf8");
+
+//mysqli_select_db($con, "uefa_champions");
 ?>
